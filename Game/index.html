@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        h3 {
+            background: deepskyblue;
+            width: 200px;
+            height: 30px;
+            border: 2px solid blue;
+        }
+        h3:hover {
+            background: royalblue;
+            cursor: pointer;
+        }
+    </style>
+    <script src="game.js"></script>
+</head>
+<body style="background: url('pictures/body_background.jpg'); margin-bottom: -8px; margin-top: -8px;">
+    <canvas id="canvas"
+            width="640" height="637"
+            style="border: 1px solid black; background: url('pictures/background.png'); margin-left: 25%; display: none" >
+    </canvas>
+    <!--<div id="result"></div>-->
+    <div id="end_page" style="float: right; margin-right: 7%">
+        <br><br>
+        <div id="record" style="display: none; color: red">
+            Количество очков: 0
+        </div>
+        <br>
+        <button id="ok" style="display: none; margin-left: 50px" onclick="startPage()">
+            OK
+        </button>
+    </div>
+    <div id="menu" align="center">
+        <br><br>
+        <input type="text" id="name" onchange="setName(this.value)" placeholder="* Ваше имя" style="margin-left: 100px" required="">
+        <h3 onclick="
+            document.getElementById('canvas').style.display = 'inline';
+            document.getElementById('record').style.display = 'inline';
+            document.getElementById('menu').style.display = 'none';
+            play();
+        ">
+            Играть
+        </h3>
+        <h3 id="level1" onclick="game_session.level = 0;
+                            this.style.background = 'darkblue';
+                            document.getElementById('level2').style.background = 'deepskyblue';"
+            style="background: darkblue">
+            Уровень 1
+        </h3>
+        <h3 id="level2" onclick="game_session.level = 1;
+                            this.style.background = 'darkblue';
+                            document.getElementById('level1').style.background = 'deepskyblue';">
+            Уровень 2
+        </h3>
+        <h3 onclick="showRecords()">
+            Таблица рекордов
+        </h3>
+    </div>
+    <div id="records" align="center" style="color: red; display: none">
+        <button onclick="document.getElementById('records').style.display = 'none'; document.getElementById('menu').style.display = ''">
+            Назад
+        </button>
+    </div>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+    </script>
+</body>
+</html>
